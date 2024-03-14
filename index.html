@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ninestails Portfolio</title>
+<link rel="icon" type="image/png" href="icon.png"> <!-- Favicon -->
+<meta name="description" content="Welcome to Ninestails Portfolio. Explore my projects here."> <!-- Description -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
   body {
@@ -36,15 +38,17 @@
   }
 
   .box {
-    width: 100px;
-    height: 100px;
-    background-color: #3498db;
-    margin: 20px; /* Adjust margin for spacing */
-    text-align: center;
-    line-height: 100px;
-    color: black; /* Change text color to black */
-    flex: 1; /* Allow boxes to grow and fill available space */
-  }
+  width: 100px; /* Adjusted width */
+  max-width: 1000px; /* Limiting maximum width */
+  height: auto; /* Allowing height to adjust based on content */
+  background-color: #3498db;
+  margin: auto; /* Adjust margin for spacing */
+  text-align: center;
+  line-height: 1.5; /* Adjust line height for better readability */
+  color: black; /* Change text color to black */
+  flex: 1; /* Allow boxes to grow and fill available space */
+}
+
   .section {
     padding: 200px;
     margin: 0 auto 500px; /* Add more margin to push content further down */
@@ -70,9 +74,6 @@
     align-items: center; /* Center items along the cross axis */
     transition: background-color 0.3s ease, filter 0.5s ease; /* Add transition for blur effect */
     position: relative; /* Position relative for absolute positioning of project titles */
-  }
-  .project-box:hover {
-    /* Remove hover-specific styling */
   }
   .project-title {
     font-size: 18px;
@@ -102,10 +103,7 @@
 </div>
 <div class="content">
   <div class="box" id="box1">
-    <a href="#projects">Go to Projects</a>
-  </div>
-  <div class="box" id="box2">
-    <a href="#section2">Go to Section 2</a>
+    <a> Welcome to Ninestails Portfolio. Here you can learn more about me <br> as well as see some of the project's i am currently working on.</a>
   </div>
 </div>
 <div class="section" id="projects">
@@ -125,6 +123,8 @@
     </div>
   </div>
 </div>
+
+
 <script>
   // Define an array of hex codes for background color of project boxes
   var projectColors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#f1c40f']; // Add more colors if needed
