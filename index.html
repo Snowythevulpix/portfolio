@@ -38,20 +38,20 @@
   }
 
   .box {
-  width: 100px; /* Adjusted width */
-  max-width: 1000px; /* Limiting maximum width */
-  height: auto; /* Allowing height to adjust based on content */
-  background-color: #3498db;
-  margin: auto; /* Adjust margin for spacing */
-  text-align: center;
-  line-height: 1.5; /* Adjust line height for better readability */
-  color: black; /* Change text color to black */
-  flex: 1; /* Allow boxes to grow and fill available space */
-}
+    width: 100px; /* Adjusted width */
+    max-width: 1000px; /* Limiting maximum width */
+    height: auto; /* Allowing height to adjust based on content */
+    background-color: #3498db;
+    margin: auto; /* Adjust margin for spacing */
+    text-align: center;
+    line-height: 1.5; /* Adjust line height for better readability */
+    color: black; /* Change text color to black */
+    flex: 1; /* Allow boxes to grow and fill available space */
+  }
 
   .section {
     padding: 200px;
-    margin: 0 auto 500px; /* Add more margin to push content further down */
+    margin: 0 auto 200px; /* Adjust margin to maintain consistent gap */
     max-width: 600px; /* Adjust as needed */
     display: flex; /* Add flex display */
     justify-content: space-around; /* Distribute items evenly along the main axis */
@@ -94,6 +94,81 @@
     font-size: 24px;
     margin: 0 5px;
   }
+  .aboutme {
+    padding: 200px;
+    margin: 200px auto 0; /* Adjust margin to maintain consistent gap */
+    max-width: 600px; /* Adjust as needed */
+    display: flex; /* Add flex display */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    text-align: center;
+  }
+
+  /* Additional styles for the new boxes */
+  .programming-languages {
+    width: 200px;
+    height: 200px;
+    background-color: #3498db;
+    margin: 20px;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, filter 0.5s ease;
+    position: relative;
+  }
+  .programming-languages-title {
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .programming-languages-tags {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .programming-languages-tags i {
+    font-size: 24px;
+    margin: 0 5px;
+  }
+
+  /* Additional styles for the Last Listened to Song box */
+  .last-listened-song-box {
+    width: 300px;
+    height: auto;
+    background-color: #3498db;
+    margin: 20px;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, filter 0.5s ease;
+    position: relative;
+  }
+  .last-listened-song-box-title {
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .last-listened-song-box-image {
+    width: 150px;
+    height: 150px;
+    margin-top: 40px;
+  }
 </style>
 </head>
 <body>
@@ -103,11 +178,12 @@
 </div>
 <div class="content">
   <div class="box" id="box1">
-    <a> Welcome to Ninestails Portfolio. Here you can learn more about me <br> as well as see some of the project's i am currently working on.</a>
+    <a> Welcome to Ninestails Portfolio. Here you can learn more about me <br> as well as see some of the projects I am currently working on.</a>
   </div>
 </div>
+
 <div class="section" id="projects">
-  <h2 style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%);">Projects</h2>
+  <h2 style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%);">My Projects</h2>
   <div class="project-box" id="project-box1" onclick="window.location.href='https://github.com/snowythevulpix/pagostunes';">
     <div class="project-title">pagostunes</div>
     <div class="project-tags">
@@ -124,24 +200,86 @@
   </div>
 </div>
 
+<div class="section" id="about-me">
+  <h2 style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%);">About Me</h2>
+  <div class="programming-languages" id="programming-languages-box1">
+    <div class="programming-languages-title">Programming Languages I Know</div>
+    <div class="programming-languages-tags">
+      <i class="fab fa-python"></i>
+      <i class="fab fa-html5"></i>
+      <i class="fab fa-css3-alt"></i>
+      <i class="fab fa-js"></i>
+    </div>
+  </div>
+  <div class="last-listened-song-box" id="last-listened-song-box" onclick="window.location.href='/'">
+    <div class="last-listened-song-box-title">Last Listened to Song: Loading...</div>
+    <img class="last-listened-song-box-image" id="last-listened-song-box-image" src="" alt="Album Art">
+
+  </div>
+</div>
 
 <script>
-  // Define an array of hex codes for background color of project boxes
-  var projectColors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#f1c40f']; // Add more colors if needed
+const clientId = '2f8ef001cceb4b4dbe29ab83e7673864';
+const redirectUri = 'http://127.0.0.1:5500/index.html'; // Replace with your redirect URI
+const scopes = 'user-read-recently-played';
+const authEndpoint = 'https://accounts.spotify.com/authorize';
 
-  // Function to set random color to each project box
-  function setProjectBoxColors() {
-    var projectBoxes = document.querySelectorAll('.project-box');
-    projectBoxes.forEach(function(box) {
-      var randomIndex = Math.floor(Math.random() * projectColors.length);
-      box.style.backgroundColor = projectColors[randomIndex];
-    });
+// Function to fetch access token
+async function fetchAccessToken() {
+  const params = new URLSearchParams({
+    client_id: clientId,
+    response_type: 'token',
+    redirect_uri: redirectUri,
+    scope: scopes,
+  });
+
+  window.location.href = `${authEndpoint}?${params}`;
+}
+
+// Function to get the newest song
+async function getNewestSong() {
+  const token = getTokenFromUrl();
+  if (!token) {
+    fetchAccessToken();
+    return;
   }
 
-  // Call the function to set colors on page load
-  window.addEventListener('load', function() {
-    setProjectBoxColors();
+  const response = await fetch('https://api.spotify.com/v1/me/player/recently-played', {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
   });
+
+  if (response.ok) {
+    const data = await response.json();
+    const track = data.items[0].track;
+    const name = track.name;
+    const albumArtUrl = track.album.images[0].url;
+    const trackUrl = track.external_urls.spotify;
+    displayLastListenedToSong(name, albumArtUrl, trackUrl);
+  } else {
+    console.error('Failed to fetch recently played tracks:', response.statusText);
+  }
+}
+
+// Function to extract access token from URL hash
+function getTokenFromUrl() {
+  const hash = window.location.hash.substr(1);
+  const params = new URLSearchParams(hash);
+  return params.get('access_token');
+}
+
+// Function to display last listened to song
+function displayLastListenedToSong(name, albumArtUrl, trackUrl) {
+  const lastListenedSongBoxTitle = document.querySelector('.last-listened-song-box-title');
+  lastListenedSongBoxTitle.innerHTML = `Last Listened to Song:${name}</a>`;
+  const lastListenedSongBoxImage = document.getElementById('last-listened-song-box-image');
+  lastListenedSongBoxImage.src = albumArtUrl;
+}
+
+// Call the function to get the newest song details
+getNewestSong();
+
 </script>
 </body>
 </html>
