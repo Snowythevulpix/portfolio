@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ninestails Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.5s ease; /* Smooth transition for background color change */
+    background-color: #03002e; /* Initial background color */
+    color: white;
+  }
+  .header {
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .header h1 {
+    margin: 0;
+  }
+  .header img {
+    width: 50px; /* Adjust the size of the icon as needed */
+    height: auto;
+    margin-left: 10px; /* Add some spacing between the text and the icon */
+  }
+  .content {
+    padding: 200px;
+    display: flex; /* Add flex display */
+    justify-content: center; /* Center items horizontally */
+  }
+
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    margin: 20px; /* Adjust margin for spacing */
+    text-align: center;
+    line-height: 100px;
+    color: black; /* Change text color to black */
+    flex: 1; /* Allow boxes to grow and fill available space */
+  }
+  .section {
+    padding: 200px;
+    margin: 0 auto 500px; /* Add more margin to push content further down */
+    max-width: 600px; /* Adjust as needed */
+    display: flex; /* Add flex display */
+    justify-content: space-around; /* Distribute items evenly along the main axis */
+    align-items: center; /* Center items along the cross axis */
+    position: relative; /* Position relative for absolute positioning of project titles */
+  }
+
+  /* New styles for project boxes */
+  .project-box {
+    width: 200px;
+    height: 200px;
+    background-color: #3498db;
+    margin: 20px;
+    text-align: center;
+    color: black; /* Change text color to black */
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute items evenly along the cross axis */
+    align-items: center; /* Center items along the cross axis */
+    transition: background-color 0.3s ease, filter 0.5s ease; /* Add transition for blur effect */
+    position: relative; /* Position relative for absolute positioning of project titles */
+  }
+  .project-box:hover {
+    /* Remove hover-specific styling */
+  }
+  .project-title {
+    font-size: 18px;
+    position: absolute;
+    top: 10px; /* Adjust top position */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; /* Ensure titles appear above the boxes */
+  }
+  .project-tags {
+    display: flex;
+    position: absolute;
+    bottom: 10px; /* Adjust bottom position */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .project-tags i {
+    font-size: 24px;
+    margin: 0 5px;
+  }
+</style>
+</head>
+<body>
+<div class="header" id="top">
+  <h1>Ninestails Portfolio</h1>
+  <img src="icon.png" alt="Icon">
+</div>
+<div class="content">
+  <div class="box" id="box1">
+    <a href="#projects">Go to Projects</a>
+  </div>
+  <div class="box" id="box2">
+    <a href="#section2">Go to Section 2</a>
+  </div>
+</div>
+<div class="section" id="projects">
+  <h2 style="position: absolute; top: 50px; left: 50%; transform: translateX(-50%);">Projects</h2>
+  <div class="project-box" id="project-box1" onclick="window.location.href='https://github.com/snowythevulpix/pagostunes';">
+    <div class="project-title">pagostunes</div>
+    <div class="project-tags">
+      <i class="fab fa-html5"></i>
+      <i class="fab fa-css3-alt"></i>
+      <i class="fab fa-js"></i>
+    </div>
+  </div>
+  <div class="project-box" id="project-box2" onclick="window.location.href='https://github.com/snowythevulpix/sonicdotpy';">
+    <div class="project-title">SonicDotPy</div>
+    <div class="project-tags">
+      <i class="fab fa-python"></i>
+    </div>
+  </div>
+</div>
+<script>
+  // Define an array of hex codes for background color of project boxes
+  var projectColors = ['#3498db', '#2ecc71', '#e74c3c', '#9b59b6', '#f1c40f']; // Add more colors if needed
+
+  // Function to set random color to each project box
+  function setProjectBoxColors() {
+    var projectBoxes = document.querySelectorAll('.project-box');
+    projectBoxes.forEach(function(box) {
+      var randomIndex = Math.floor(Math.random() * projectColors.length);
+      box.style.backgroundColor = projectColors[randomIndex];
+    });
+  }
+
+  // Call the function to set colors on page load
+  window.addEventListener('load', function() {
+    setProjectBoxColors();
+  });
+</script>
+</body>
+</html>
