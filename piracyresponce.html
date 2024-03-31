@@ -13,19 +13,24 @@
         overflow: hidden;
     }
 
-    video {
+    video, #cappr-player {
         width: 50%; /* Adjust the width as needed */
         height: auto; /* Maintain aspect ratio */
-        max-width: 100%; /* Ensure video doesn't exceed viewport */
+        max-width: 100%; /* Ensure player doesn't exceed viewport */
         display: block; /* Ensure proper alignment */
-        margin: auto; /* Center the video */
+        margin: auto; /* Center the player */
     }
 </style>
 </head>
 <body>
-<video autoplay playsinline loop>
-    <source src="https://ia800803.us.archive.org/29/items/MacArthur_Foundation_100andChange_dQw4w9WgXcQ/Rick_Astley_-_Never_Gonna_Give_You_Up_dQw4w9WgXcQ.mp4?cnt=0" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
+<!-- Embed the Cappr player -->
+<div id="cappr-player">
+    <!-- Replace 'YOUR_CAPPR_EMBED_CODE_HERE' with your actual Cappr embed code -->
+    <video width="640" height="360" controls autoplay>
+        <source src="https://ia800803.us.archive.org/29/items/MacArthur_Foundation_100andChange_dQw4w9WgXcQ/Rick_Astley_-_Never_Gonna_Give_You_Up_dQw4w9WgXcQ.mp4?cnt=0" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      
+</div>
 </body>
 </html>
