@@ -47,6 +47,8 @@
     line-height: 1.5; /* Adjust line height for better readability */
     color: black; /* Change text color to black */
     flex: 1; /* Allow boxes to grow and fill available space */
+    opacity: 0; /* Initially hide the box */
+    animation: fadeIn 5s ease forwards; /* Apply fade-in animation */
   }
 
   .section {
@@ -74,6 +76,8 @@
     align-items: center; /* Center items along the cross axis */
     transition: background-color 0.3s ease, filter 0.5s ease; /* Add transition for blur effect */
     position: relative; /* Position relative for absolute positioning of project titles */
+    opacity: 0; /* Initially hide the box */
+    animation: fadeIn 5s ease forwards; /* Apply fade-in animation */
   }
   .project-title {
     font-size: 18px;
@@ -119,6 +123,8 @@
     align-items: center;
     transition: background-color 0.3s ease, filter 0.5s ease;
     position: relative;
+    opacity: 0; /* Initially hide the box */
+    animation: fadeIn 5s ease forwards; /* Apply fade-in animation */
   }
   .programming-languages-title {
     font-size: 18px;
@@ -138,6 +144,16 @@
   .programming-languages-tags i {
     font-size: 24px;
     margin: 0 5px;
+  }
+
+  /* Keyframes for fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
 </style>
@@ -190,6 +206,37 @@
   </div>
 </div>
 
+<script>
+// Function to check if an element is in the viewport
+function isInViewport(element) {
+  var rect = element.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
 
+// Function to handle fade-in animation when elements enter viewport
+function fadeInElementsOnScroll() {
+  var elements = document.querySelectorAll('.box, .project-box, .programming-languages');
+  elements.forEach(function(element) {
+    if (isInViewport(element) && !element.classList.contains('fadeIn')) {
+      element.classList.add('fadeIn');
+    }
+  });
+}
+
+// Listen for scroll event and trigger fade-in animation for elements
+document.addEventListener('scroll', function() {
+  fadeInElementsOnScroll();
+});
+
+// Trigger fade-in animation for elements initially visible on page load
+window.addEventListener('DOMContentLoaded', function() {
+  fadeInElementsOnScroll();
+});
+</script>
 </body>
 </html>
