@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display Code from URL</title>
+</head>
+<body>
+  <h1>Code from URL:</h1>
+  <p id="codeDisplay"></p>
+  <button onclick="copyCode()">Copy Code</button>
+
+  <script>
+    // Function to get the value of a URL parameter
+    function getUrlParameter(name) {
+      name = name.replace(/[\[\]]/g, '\\$&');
+      var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(window.location.href);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    // Get the value of the 'code' parameter from the URL
+    var code = getUrlParameter('code');
+
+    // Display the code on the screen
+    if (code) {
+      document.getElementById('codeDisplay').textContent = code;
+    } else {
+      document.getElementById('codeDisplay').textContent = 'No code found in URL.';
+    }
+
+    // Function to copy code to clipboard
+    function copyCode() {
+      var codeElement = document.getElementById('codeDisplay');
+      var range = document.createRange();
+      range.selectNode(codeElement);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges();
+      alert('Code copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
