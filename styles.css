@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -10,11 +11,25 @@ body, html {
 }
 
 @keyframes backgroundFade {
-    0% { background-position: 0% 50%; }
-    25% { background-position: 100% 50%; }
-    50% { background-position: 100% 50%; }
-    75% { background-position: 0% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    25% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .fade-in {
@@ -22,8 +37,13 @@ body, html {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 header h1 {
@@ -42,7 +62,8 @@ main {
 }
 
 .box-container {
-    width: 45%; /* Adjust as necessary */
+    width: 45%;
+    /* Adjust as necessary */
 }
 
 .box {
@@ -54,22 +75,44 @@ main {
     box-sizing: border-box;
 }
 
-#tanpopo-box h2, #pronouns-box h2, #another-box h2, #yet-another-box h2 {
+#tanpopo-box h2,
+#pronouns-box h2,
+#another-box h2,
+#yet-another-box h2 {
     color: white;
     text-shadow: 1px 1px 0 red;
 }
 
-#tanpopo-box p, #pronouns-box p, #another-box p, #yet-another-box p {
+#tanpopo-box p,
+#pronouns-box p,
+#another-box p,
+#yet-another-box p {
     color: white;
     text-shadow: 1px 1px 0 red;
 }
 
-#pronouns-box a, #another-box a, #yet-another-box a {
+#pronouns-box a,
+#another-box a,
+#yet-another-box a {
     color: white;
     text-shadow: 1px 1px 0 red;
     text-decoration: none;
 }
 
-#pronouns-box a:hover, #another-box a:hover, #yet-another-box a:hover {
+#pronouns-box a:hover,
+#another-box a:hover,
+#yet-another-box a:hover {
     text-decoration: underline;
+}
+
+.info-text {
+    color: blue;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: transparent;
+    /* Make the background transparent */
 }
