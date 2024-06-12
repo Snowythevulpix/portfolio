@@ -119,4 +119,16 @@ main {
     padding: 10px;
     background-color: transparent;
     /* Make the background transparent */
+    opacity: 0;
+    animation: fadeInInfoText 2s ease forwards;
+}
+
+@keyframes fadeInInfoText {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
