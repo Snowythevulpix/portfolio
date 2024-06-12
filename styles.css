@@ -78,7 +78,8 @@ main {
 #tanpopo-box h2,
 #pronouns-box h2,
 #another-box h2,
-#yet-another-box h2 {
+#yet-another-box h2,
+#last-watched-anime-box h2 {
     color: white;
     text-shadow: 1px 1px 0 red;
 }
@@ -86,14 +87,16 @@ main {
 #tanpopo-box p,
 #pronouns-box p,
 #another-box p,
-#yet-another-box p {
+#yet-another-box p,
+#last-watched-anime-box p {
     color: white;
     text-shadow: 1px 1px 0 red;
 }
 
 #pronouns-box a,
 #another-box a,
-#yet-another-box a {
+#yet-another-box a,
+#last-watched-anime-box a {
     color: white;
     text-shadow: 1px 1px 0 red;
     text-decoration: none;
@@ -101,7 +104,8 @@ main {
 
 #pronouns-box a:hover,
 #another-box a:hover,
-#yet-another-box a:hover {
+#yet-another-box a:hover,
+#last-watched-anime-box a:hover {
     text-decoration: underline;
 }
 
