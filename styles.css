@@ -7,7 +7,7 @@ html {
     font-family: Arial, sans-serif;
     background: linear-gradient(90deg, #fff430, #ffffff, #9c59d1, #000000);
     background-size: 400% 400%;
-    animation: backgroundFade 10s ease infinite;
+    animation: backgroundFade 100s ease infinite;
 }
 
 @keyframes backgroundFade {
