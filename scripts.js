@@ -1,33 +1,39 @@
-// Existing code for fetching last watched anime
-
-async function fetchLastWatchedAnime(userName) {
+async function fetchLastWatchedAnime(userName, status) {
   const baseURL = "https://graphql.anilist.co";
   const headers = {
     "Content-Type": "application/json",
   };
 
   const query = `
-      query ($userName: String) {
-          MediaListCollection(userName: $userName, type: ANIME) {
-              lists {
-                  entries {
-                      media {
-                          id
-                          title {
-                              english
-                          }
-                          updatedAt
-                      }
-                      status
-                  }
-              }
+    query ($username: String!, $status: MediaListStatus!) {
+      latestWatching: MediaList(
+        userName: $username
+        status: $status
+        type: ANIME
+        sort: UPDATED_TIME_DESC
+      ) {
+        media {
+          id
+          title {
+            romaji
+            english
           }
+        }
+        updatedAt
       }
+    }
   `;
 
   const variables = {
-    userName: userName
+    username: userName,
+    status: status
   };
+
+  // Log the request payload for debugging
+  console.log("Request payload:", JSON.stringify({
+    query: query,
+    variables: variables
+  }));
 
   try {
     const response = await fetch(baseURL, {
@@ -40,59 +46,67 @@ async function fetchLastWatchedAnime(userName) {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`Failed to fetch data: ${response.status} - ${errorText}`);
       throw new Error(`Failed to fetch data: ${response.status}`);
     }
 
     const data = await response.json();
-    const mediaLists = data.data.MediaListCollection.lists;
-    let lastWatchedAnime = null;
-    let lastWatchedTimestamp = 0;
+    console.log("Response data:", data);
+    const latestWatching = data.data.latestWatching;
 
-    // Iterate through all entries to find the last watched anime
-    mediaLists.forEach(list => {
-      list.entries.forEach(entry => {
-        // Check if the status indicates an episode was watched
-        if (entry.status === 'WATCHING' || (entry.status === 'REPEATING' && lastWatchedAnime === null)) {
-          const updatedAt = entry.media.updatedAt;
-          // Check if this entry was updated more recently than the current last watched anime
-          if (updatedAt > lastWatchedTimestamp) {
-            lastWatchedAnime = entry.media;
-            lastWatchedTimestamp = updatedAt;
-          }
-        }
-      });
-    });
-
-    if (!lastWatchedAnime) {
+    if (!latestWatching || !latestWatching.media) {
       throw new Error("No anime entries found.");
     }
 
-    return lastWatchedAnime;
+    return {
+      media: latestWatching.media,
+      updatedAt: latestWatching.updatedAt
+    };
   } catch (error) {
-    console.error(error);
+    console.error("Error:", error);
     throw error;
   }
 }
 
-// Function to update the HTML with the last watched anime title
-function updateLastWatchedAnimeTitle(title) {
+// Function to update the HTML with the last watched anime title and timestamp
+function updateLastWatchedAnimeInfo(title, timestamp) {
   const animeInfoDiv = document.getElementById('last-watched-anime-info');
   if (animeInfoDiv) {
-    animeInfoDiv.innerHTML = "<p>" + title + "</p>";
+    // Convert the Unix timestamp (if in milliseconds) to a Date object
+    const formattedDate = new Date(timestamp * 1000).toLocaleString(); // Convert from seconds to milliseconds
+
+    animeInfoDiv.innerHTML = `
+      <p>Title: ${title}</p>
+      <p>Watched on: ${formattedDate}</p>
+    `;
   }
+}
+
+// Function to compare two timestamps and display the newer one
+function compareAndDisplayNewer(anime1, anime2) {
+  const newerAnime = (anime1.updatedAt > anime2.updatedAt) ? anime1 : anime2;
+  const title = newerAnime.media.title.english || newerAnime.media.title.romaji;
+  updateLastWatchedAnimeInfo(title, newerAnime.updatedAt);
 }
 
 // Example usage
 const userName = "LikosTerapagos"; // Replace with the desired username
-fetchLastWatchedAnime(userName)
-  .then(lastWatchedAnime => {
-    console.log("Last watched anime:", lastWatchedAnime);
-    const englishTitle = lastWatchedAnime.title.english;
-    updateLastWatchedAnimeTitle(englishTitle);
+const statusCurrent = "CURRENT";
+const statusRewatching = "REPEATING";
+
+Promise.all([
+  fetchLastWatchedAnime(userName, statusCurrent),
+  fetchLastWatchedAnime(userName, statusRewatching)
+])
+  .then(([currentAnime, rewatchingAnime]) => {
+    compareAndDisplayNewer(currentAnime, rewatchingAnime);
   })
   .catch(error => {
     console.error("Error fetching last watched anime:", error);
   });
+
+
 
 // New code for make_vote function and informational text
 
