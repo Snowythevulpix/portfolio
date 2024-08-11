@@ -4,54 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninestails Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="scripts.js" defer></script>
-    <meta property="og:title" content="The Portfolio for Ninestails" />
-    <meta property="og:image" content="Psyducksprite.png" />
-    <link rel="icon" href="psyducksprite.png" type="image/x-icon">
+    <title>Ninestails - Portfolio</title>
+    <link rel="icon" href="icon.png" type="image/png"> <!-- Favicon -->
+    <link rel="stylesheet" href="styles.css"> <!-- External CSS -->
 </head>
 
 <body>
-    <div class="fade-in">
-        <header>
-            <h1>Ninestails</h1>
-        </header>
-        <main>
-            <div class="box-container">
-                <div class="box" id="tanpopo-box">
-                    <h2><a href="https://github.com/Snowythevulpix/tanpopo" target="_blank">Tanpopo</a></h2>
-                    <p>Tanpopo is an anime UI designed to streamline your anime watching experience. With just two
-                        button presses, you can import your anime and start watching. Tanpopo provides a
-                        user-friendly interface built using CustomTkinter, making it easy to navigate and enjoy your
-                        favorite
-                        anime series.</p>
-                </div>
-                <div class="box" id="pronouns-box">
-                    <h2>Pronouns</h2>
-                    <p><a href="#" id="pronoun-xe">Xe</a>/<a href="https://pronoun.fandom.com/wiki/Xe/Xem"
-                            id="pronoun-they">They</a>/<a href="https://pronoun.fandom.com/wiki/She/Her"
-                            id="pronoun-she">She</a></p>
-                </div>
-            </div>
-            <div class="box-container">
-                <div class="box" id="another-box">
-                    <h2>Programming languages</h2>
-                    <p>Python, HTML, CSS, JavaScript.</p>
-                </div>
-                <div class="box" id="last-watched-anime-box">
-                    <h2>Last Watched Anime</h2>
-                    <div id="last-watched-anime-info">
-                        <p>Loading...</p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <div class="info-text">
-        Once daily when you load this page, a donation is made to Palestine
-    </div>
+    <!-- Psyduck Sprite -->
+    <img src="psyducksprite.png" alt="Psyduck Sprite" class="sprite">
+
+    <!-- Content Sections -->
+    <section id="intro">
+        <h1>Welcome to Ninestails' Portfolio</h1>
+        <p>Sup! My name is Ninestails/Nines. I'm a developer who mostly works in Python; however, I have experience in
+            web development as well.</p>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I’m enby and transfem, meaning I prefer feminine or neutral/feminine terms being used for me. Specifically,
+            the pronouns I use are Xe/They/She.
+        </p>
+    </section>
+
+    <section id="work">
+        <h2>My Work</h2>
+        <p>Description of the projects I have worked on.</p>
+    </section>
+
+    <section id="last-watched-anime">
+        <h2>Newest Watched Anime</h2>
+        <div id="last-watched-anime-info">
+            <!-- The JavaScript will populate this section -->
+        </div>
+    </section>
+
+    <script src="scripts.js"></script> <!-- External JavaScript -->
 </body>
 
 </html>
