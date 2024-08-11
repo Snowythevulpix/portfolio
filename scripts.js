@@ -97,7 +97,7 @@ function updateLastWatchedAnimeInfo(title, timestamp) {
 // Function to compare two timestamps and display the newer one
 function compareAndDisplayNewer(anime1, anime2) {
   const newerAnime = (anime1.updatedAt > anime2.updatedAt) ? anime1 : anime2;
-  const title = newerAnime.media.title.english || newerAnime.media.title.romaji;
+  const title = newerAnime.media.title.romaji || newerAnime.media.title.english;
   updateLastWatchedAnimeInfo(title, newerAnime.updatedAt);
 }
 
