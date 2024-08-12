@@ -64,23 +64,15 @@ p {
 
 .trans-link {
     text-decoration: none;
-    /* Removes underline */
     color: inherit;
-    /* Ensures the link inherits the trans colors */
     position: relative;
-    /* Allows for z-index to work */
     z-index: 10;
-    /* Ensures the link is on top */
     display: inline-block;
-    /* Ensures the link occupies its own space */
     pointer-events: auto;
-    /* Ensures the link is clickable */
 }
 
-/* Optional: Add a hover effect to make it clear they are links */
 .trans-link:hover {
     text-decoration: underline;
-    /* Adds underline on hover */
     cursor: pointer;
-    /* Changes cursor to pointer on hover */
 }
+

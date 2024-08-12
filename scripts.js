@@ -117,19 +117,42 @@ Promise.all([
     console.error("Error fetching last watched anime:", error);
   });
 
-// Apply trans-colored effect to all text elements
+
+
 function applyTransColoredEffectToAll() {
-  document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a').forEach(element => {
-    const text = element.textContent;
-    element.innerHTML = ''; // Clear the current text
-    text.split('').forEach(letter => {
-      const span = document.createElement('span');
-      span.textContent = letter;
-      element.appendChild(span);
+    document.querySelectorAll('h1, h2, h3, h4, h5, h6, p').forEach(element => {
+        const text = element.textContent;
+        element.innerHTML = ''; // Clear the current text
+
+        // Split text into spans and append to the element
+        text.split('').forEach(letter => {
+            const span = document.createElement('span');
+            span.textContent = letter;
+            element.appendChild(span);
+        });
+
+        element.classList.add('trans-colored');
     });
-    element.classList.add('trans-colored');
-  });
 }
 
 // Initial application of trans-colored effect to all text elements
 applyTransColoredEffectToAll();
+
+
+function applyTransColoredEffectToList() {
+  // Select all list items within the trans-colored class
+  document.querySelectorAll('ul.trans-colored li').forEach(li => {
+      const text = li.textContent;
+      li.innerHTML = ''; // Clear the current text
+
+      // Wrap each letter in a span
+      text.split('').forEach((letter, index) => {
+          const span = document.createElement('span');
+          span.textContent = letter;
+          li.appendChild(span);
+      });
+  });
+}
+
+// Call the function to apply the effect
+applyTransColoredEffectToList();
