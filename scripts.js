@@ -21,6 +21,7 @@ async function fetchLastWatchedAnime(userName, status) {
                   }
               }
               updatedAt
+              progress
           }
       }
   `;
@@ -50,12 +51,15 @@ async function fetchLastWatchedAnime(userName, status) {
     const latestWatching = data.data.latestWatching;
 
     if (!latestWatching || !latestWatching.media) {
-      throw new Error("No anime entries found.");
+      console.warn(`No anime entries found for status: ${status}`);
+      return null;
     }
 
     return {
       media: latestWatching.media,
-      updatedAt: latestWatching.updatedAt
+      updatedAt: latestWatching.updatedAt,
+      progress: latestWatching.progress,
+      status: status
     };
   } catch (error) {
     console.error("Error:", error);
@@ -68,91 +72,120 @@ function applyTransColoredEffect(text) {
   return text.split('').map((letter, index) => {
     const span = document.createElement('span');
     span.textContent = letter;
-    // Apply color based on position
     const colors = ['#55CDFC', '#F7A8B8', '#FFFFFF', '#F7A8B8', '#55CDFC'];
     span.style.color = colors[index % colors.length];
     return span.outerHTML;
   }).join('');
 }
 
-// Function to update the HTML with the last watched anime title and timestamp
-function updateLastWatchedAnimeInfo(title, timestamp) {
+// Function to update the HTML with the last watched anime title, timestamp, and episode
+function updateLastWatchedAnimeInfo(title, timestamp, status, progress) {
   const animeInfoDiv = document.getElementById('last-watched-anime-info');
   if (animeInfoDiv) {
-    // Convert the Unix timestamp (if in milliseconds) to a Date object
-    const formattedDate = new Date(timestamp * 1000).toLocaleString(); // Convert from seconds to milliseconds
+    // Format the date as dd/mm/yy
+    const formattedDate = new Date(timestamp * 1000).toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: '2-digit'
+    });
 
-    // Apply trans-colored effect to the timestamp and the label
-    const formattedDateTransColored = applyTransColoredEffect(formattedDate);
-    const watchedOnLabel = applyTransColoredEffect('Watched on:');
+    // Format the time as hour:minute (24-hour format)
+    const formattedTime = new Date(timestamp * 1000).toLocaleTimeString('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+
     const titleTransColored = applyTransColoredEffect(title);
+    const label = status === "COMPLETED" ? 'Completed on:' : 'Watched on:';
+    const labelTransColored = applyTransColoredEffect(label);
+    const dateTimeTransColored = applyTransColoredEffect(`${formattedDate} ${formattedTime}`);
+
+    let progressInfo = '';
+    if (status !== "COMPLETED" && progress) {
+      const progressLabel = applyTransColoredEffect('Last watched episode:');
+      const progressValue = applyTransColoredEffect(`Episode ${progress}`);
+      progressInfo = `<p>${progressLabel} ${progressValue}</p>`;
+    }
 
     animeInfoDiv.innerHTML = `
           <p>${applyTransColoredEffect('Title:')} ${titleTransColored}</p>
-          <p>${watchedOnLabel} ${formattedDateTransColored}</p>
+          <p>${labelTransColored} ${dateTimeTransColored}</p>
+          ${progressInfo}
       `;
   }
 }
 
-// Function to compare two timestamps and display the newer one
-function compareAndDisplayNewer(anime1, anime2) {
-  const newerAnime = (anime1.updatedAt > anime2.updatedAt) ? anime1 : anime2;
-  const title = newerAnime.media.title.romaji || newerAnime.media.title.english;
-  updateLastWatchedAnimeInfo(title, newerAnime.updatedAt);
+// Function to compare multiple timestamps and display the most recent anime
+function compareAndDisplayNewest(...animes) {
+  const validAnimes = animes.filter(anime => anime !== null);
+  if (validAnimes.length === 0) {
+    console.warn("No valid anime entries to compare.");
+    return;
+  }
+
+  // Find the anime with the most recent updated timestamp
+  const newestAnime = validAnimes.reduce((latest, current) =>
+    (current.updatedAt > latest.updatedAt) ? current : latest
+  );
+
+  const title = newestAnime.media.title.romaji || newestAnime.media.title.english;
+  updateLastWatchedAnimeInfo(title, newestAnime.updatedAt, newestAnime.status, newestAnime.progress);
 }
 
 // Example usage
 const userName = "LikosTerapagos"; // Replace with the desired username
 const statusCurrent = "CURRENT";
 const statusRewatching = "REPEATING";
+const statusCompleted = "COMPLETED";
 
 Promise.all([
   fetchLastWatchedAnime(userName, statusCurrent),
-  fetchLastWatchedAnime(userName, statusRewatching)
+  fetchLastWatchedAnime(userName, statusRewatching),
+  fetchLastWatchedAnime(userName, statusCompleted)
 ])
-  .then(([currentAnime, rewatchingAnime]) => {
-    compareAndDisplayNewer(currentAnime, rewatchingAnime);
+  .then(([currentAnime, rewatchingAnime, completedAnime]) => {
+    compareAndDisplayNewest(currentAnime, rewatchingAnime, completedAnime);
   })
   .catch(error => {
     console.error("Error fetching last watched anime:", error);
   });
 
-
-
+// Function to apply the trans-colored effect to all text elements
 function applyTransColoredEffectToAll() {
-    document.querySelectorAll('h1, h2, h3, h4, h5, h6, p').forEach(element => {
-        const text = element.textContent;
-        element.innerHTML = ''; // Clear the current text
+  document.querySelectorAll('h1, h2, h3, h4, h5, h6, p').forEach(element => {
+    const text = element.textContent;
+    element.innerHTML = ''; // Clear the current text
 
-        // Split text into spans and append to the element
-        text.split('').forEach(letter => {
-            const span = document.createElement('span');
-            span.textContent = letter;
-            element.appendChild(span);
-        });
-
-        element.classList.add('trans-colored');
+    // Split text into spans and append to the element
+    text.split('').forEach(letter => {
+      const span = document.createElement('span');
+      span.textContent = letter;
+      element.appendChild(span);
     });
+
+    element.classList.add('trans-colored');
+  });
 }
 
 // Initial application of trans-colored effect to all text elements
 applyTransColoredEffectToAll();
 
-
+// Function to apply the trans-colored effect to list items
 function applyTransColoredEffectToList() {
   // Select all list items within the trans-colored class
   document.querySelectorAll('ul.trans-colored li').forEach(li => {
-      const text = li.textContent;
-      li.innerHTML = ''; // Clear the current text
+    const text = li.textContent;
+    li.innerHTML = ''; // Clear the current text
 
-      // Wrap each letter in a span
-      text.split('').forEach((letter, index) => {
-          const span = document.createElement('span');
-          span.textContent = letter;
-          li.appendChild(span);
-      });
+    // Wrap each letter in a span
+    text.split('').forEach((letter, index) => {
+      const span = document.createElement('span');
+      span.textContent = letter;
+      li.appendChild(span);
+    });
   });
 }
 
-// Call the function to apply the effect
+// Call the function to apply the effect to list items
 applyTransColoredEffectToList();
