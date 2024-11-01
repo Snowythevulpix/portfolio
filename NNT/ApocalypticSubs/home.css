@@ -1,112 +1,3 @@
-body {
-    background-color: #000080;
-    /* Navy blue */
-    color: white;
-    /* Text color */
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-.logo {
-    height: 50px;
-    /* Adjust the height of your logo */
-}
-
-nav a {
-    color: white;
-    /* Link color */
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-    /* Underline on hover */
-}
-
-main {
-    padding: 50px 20px;
-    display: flex;
-    justify-content: space-between;
-    /* Align content on both sides */
-}
-
-.welcome-box {
-    background-color: #3399FF;
-    /* Brighter blue */
-    border: 2px solid black;
-    /* Black outline */
-    border-radius: 5px;
-    /* Optional: rounded corners */
-    padding: 20px;
-    /* Padding inside the box */
-    width: 300px;
-    /* Fixed width */
-    height: 300px;
-    /* Fixed height to match width for 1:1 ratio */
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel {
-    position: relative;
-    width: 480px;
-    /* Example width, adjust as needed */
-    height: 270px;
-    /* Calculated 16:9 aspect ratio based on width */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 2px solid black;
-    border-radius: 5px;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 20px;
-    border-radius: 50%;
-}
-
-.carousel-button.left {
-    left: 10px;
-}
-
-.carousel-button.right {
-    right: 10px;
-}
-
-.content {
-    max-width: 800px;
-    /* Max width for content */
-    text-align: center;
-    /* Center align text */
-}
-
 /* General body styles */
 body {
     background-color: #000080;
@@ -151,52 +42,79 @@ nav a:hover {
 main {
     padding: 50px 20px;
     display: flex;
-    flex-direction: column;
-    /* Stack releases vertically */
-    align-items: center;
-    /* Center align items */
+    justify-content: space-between;
+    /* Align content on both sides */
 }
 
-/* Title styles */
-.releases-title {
-    text-align: center;
-    font-size: 36px;
-    margin: 20px 0;
-    color: white;
-}
-
-/* Individual release styles */
-.release {
+/* Welcome box styles */
+.welcome-box {
+    background-color: #3399FF;
+    /* Brighter blue */
+    border: 2px solid black;
+    /* Black outline */
+    border-radius: 5px;
+    /* Optional: rounded corners */
+    padding: 20px;
+    /* Padding inside the box */
+    width: 300px;
+    /* Fixed width */
+    height: auto;
+    /* Height adjusts based on content */
+    margin-right: 20px;
+    /* Space between box and carousel */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
-    /* Space between releases */
 }
 
-/* Image styles for releases */
-.release img {
+/* Carousel styles */
+.carousel {
+    position: relative;
+    width: 480px;
+    /* Example width, adjust as needed */
+    height: 270px;
+    /* Calculated 16:9 aspect ratio based on width */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Carousel image styles */
+.carousel-image {
     width: 100%;
-    max-width: 400px;
-    /* Adjust max width for images */
+    height: 100%;
+    object-fit: cover;
     border: 2px solid black;
-    margin-bottom: 10px;
-    /* Space below images */
+    border-radius: 5px;
 }
 
-/* Link styles for download buttons */
-.release a {
-    display: block;
-    margin-top: 10px;
+/* Carousel button styles */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    /* Button text color */
-    background-color: #3399FF;
-    /* Button background */
+    border: none;
     padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.carousel-button.left {
+    left: 10px;
+}
+
+.carousel-button.right {
+    right: 10px;
+}
+
+/* Content alignment */
+.content {
+    max-width: 800px;
+    /* Max width for content */
     text-align: center;
-    /* Center align text in button */
-    text-decoration: none;
-    /* Remove underline */
-    border-radius: 5px;
-    /* Rounded corners for the button */
+    /* Center align text */
 }
