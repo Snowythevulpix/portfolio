@@ -36,8 +36,10 @@ nav a:hover {
 main {
     padding: 50px 20px;
     display: flex;
-    justify-content: space-between;
-    /* Align content on both sides */
+    flex-direction: column;
+    /* Stack items vertically */
+    align-items: center;
+    /* Center align items */
 }
 
 .welcome-box {
@@ -62,9 +64,10 @@ main {
 
 .carousel {
     position: relative;
-    width: 300px;
-    height: 300px;
-    /* Ensure the carousel is the same size as the welcome box */
+    width: 480px;
+    /* Example width, adjust as needed */
+    height: 270px;
+    /* Calculated 16:9 aspect ratio based on width */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,4 +100,55 @@ main {
 
 .carousel-button.right {
     right: 10px;
+}
+
+.content {
+    max-width: 800px;
+    /* Max width for content */
+    text-align: center;
+    /* Center align text */
+}
+
+.release {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    /* Space between releases */
+}
+
+.release img {
+    width: 100%;
+    max-width: 400px;
+    /* Adjust max width for images */
+    border: 2px solid black;
+    margin-bottom: 10px;
+    /* Space below images */
+}
+
+.release a {
+    display: block;
+    margin-top: 10px;
+    color: white;
+    background-color: #3399FF;
+    /* Button background */
+    padding: 10px;
+    /* Button padding */
+    text-align: center;
+    /* Center align text in button */
+    text-decoration: none;
+    /* Remove underline */
+    border-radius: 5px;
+    /* Rounded corners for the button */
+}
+
+/* New styles for Releases page */
+.releases-title {
+    text-align: center;
+    font-size: 36px;
+    /* Title font size */
+    margin: 20px 0;
+    /* Margin above and below title */
+    color: white;
+    /* Title text color */
 }
