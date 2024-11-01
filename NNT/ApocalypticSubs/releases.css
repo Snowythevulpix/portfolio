@@ -91,3 +91,26 @@ main {
     border-radius: 5px;
     /* Rounded corners for the button */
 }
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    main {
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .releases-title {
+        font-size: 28px;
+        /* Smaller title on mobile */
+    }
+
+    .release img {
+        max-width: 90%;
+        /* Full width for images on mobile */
+    }
+
+    .release a {
+        width: 100%;
+        /* Full width for buttons */
+    }
+}

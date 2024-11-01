@@ -44,6 +44,8 @@ main {
     display: flex;
     justify-content: space-between;
     /* Align content on both sides */
+    flex-wrap: wrap;
+    /* Allow wrapping for mobile */
 }
 
 /* Welcome box styles */
@@ -117,4 +119,33 @@ main {
     /* Max width for content */
     text-align: center;
     /* Center align text */
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        /* Stack elements vertically */
+        align-items: center;
+        /* Center align items */
+    }
+
+    .welcome-box {
+        width: 90%;
+        /* Make the welcome box wider on mobile */
+        margin: 0 0 20px;
+        /* Adjust margins for mobile */
+    }
+
+    .carousel {
+        width: 100%;
+        /* Full width for carousel on mobile */
+        height: auto;
+        /* Auto height for responsive images */
+    }
+
+    .carousel-image {
+        height: auto;
+        /* Responsive height */
+    }
 }
