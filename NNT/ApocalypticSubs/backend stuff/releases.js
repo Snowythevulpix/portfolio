@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("releases-container");
 
     // Fetch the JSON file and process it
-    fetch("../releases.json")
+    fetch("../backend stuff/releases.json")
         .then(response => response.json())
         .then(data => {
             // Sort episodes by the highest number
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Set image with a placeholder if missing
                 const img = document.createElement("img");
-                img.src = release.image || "../releasephotos/placeholder.png";
+                img.src = release.image || "/NNT/ApocalypticSubs/backend stuff/releasephotos/placeholder.png";
                 img.alt = `Episode ${release.episode} Image`;
                 releaseDiv.appendChild(img);
 
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const langLink = isPortuguese ? release.br : release.en;
                 const langText = langLink
                     ? `Download Episode S02E${release.episode} (${isPortuguese ? "PT-BR" : "EN"})`
-                    : (isPortuguese ? "Mei language oui oui or smthn" : "We are working for this release, please join our Discord for updates");
+                    : (isPortuguese ? "Mei language oui oui or smthn" : "We are working on this release, please join our Discord for updates");
 
                 const downloadLink = document.createElement("a");
                 downloadLink.href = langLink || "https://discord.gg/AsjunzY5"; // Redirect to Discord if link is missing
