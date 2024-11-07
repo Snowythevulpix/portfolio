@@ -5,14 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("../backend stuff/releases.json")
         .then(response => response.json())
         .then(data => {
-            // Reverse the order of the JSON data
-            const reversedData = data.slice().reverse();
+            // Get the query parameter from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const requestedId = urlParams.keys().next().value;
+
+            // Filter data if an id is specified in the query
+            const filteredData = requestedId ? data.filter(release => release.id === requestedId) : data.slice().reverse();
 
             // Determine if the current page is English or Portuguese
             const isPortuguese = window.location.pathname.includes('/br/');
 
             // Loop through each release and create HTML structure
-            reversedData.forEach(release => {
+            filteredData.forEach(release => {
                 const releaseDiv = document.createElement("div");
                 releaseDiv.classList.add("release");
 
@@ -36,6 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Append each release to the container
                 container.appendChild(releaseDiv);
             });
+
+            // Display message if no release matches the requested id
+            if (requestedId && filteredData.length === 0) {
+                const noMatchMessage = document.createElement("p");
+                noMatchMessage.textContent = "No matching release found.";
+                container.appendChild(noMatchMessage);
+            }
         })
         .catch(error => console.error("Error loading releases:", error));
 });
