@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const langLink = isPortuguese ? release.br : release.en;
                 const langText = langLink
                     ? `Download ${release.displaytext || "Release"} (${isPortuguese ? "PT-BR" : "EN"})`
-                    : (isPortuguese ? "Mei language oui oui or smthn" : "We are working on this release, please join our Discord for updates");
+                    : (isPortuguese ? "Estamos trabalhando duro para o lançamento, por favor, entre no nosso Discord para atualizações" : "We are working on this release, please join our Discord for updates");
 
                 const downloadLink = document.createElement("a");
                 downloadLink.href = langLink || "https://discord.gg/AsjunzY5"; // Redirect to Discord if link is missing
