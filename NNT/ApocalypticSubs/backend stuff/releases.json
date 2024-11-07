@@ -1,26 +1,37 @@
 [
     {
-        "episode": 1,
+        "id": "season2episode1",
+        "displaytext": "4 knights of the apocalypse Season 2 Episode 1",
         "image": "../backend stuff/releasephotos/image1.png",
         "en": "https://nyaa.si/view/1883144",
         "br": ""
     },
     {
-        "episode": 2,
+        "id": "season2episode2",
+        "displaytext": "4 knights of the apocalypse Season 2 Episode 2",
         "image": "../backend stuff/releasephotos/image2.png",
         "en": "https://nyaa.si/view/1886830",
         "br": ""
     },
     {
-        "episode": 3,
+        "id": "season2episode3",
+        "displaytext": "4 knights of the apocalypse Season 2 Episode 3",
         "image": "../backend stuff/releasephotos/image3.png",
         "en": "https://nyaa.si/view/1890623",
         "br": ""
     },
     {
-        "episode": 4,
+        "id": "season2episode4",
+        "displaytext": "4 knights of the apocalypse Season 2 Episode 4",
         "image": "../backend stuff/releasephotos/image4.png",
         "en": "https://nyaa.si/view/1894967",
+        "br": ""
+    },
+    {
+        "id": "season1batch",
+        "displaytext": "4kota season 1 batch",
+        "image": "../backend stuff/releasephotos/s1batch.png",
+        "en": "",
         "br": ""
     }
 ]

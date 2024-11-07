@@ -5,27 +5,27 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("../backend stuff/releases.json")
         .then(response => response.json())
         .then(data => {
-            // Sort episodes by the highest number
-            data.sort((a, b) => b.episode - a.episode);
+            // Reverse the order of the JSON data
+            const reversedData = data.slice().reverse();
 
             // Determine if the current page is English or Portuguese
             const isPortuguese = window.location.pathname.includes('/br/');
 
             // Loop through each release and create HTML structure
-            data.forEach(release => {
+            reversedData.forEach(release => {
                 const releaseDiv = document.createElement("div");
                 releaseDiv.classList.add("release");
 
                 // Set image with a placeholder if missing
                 const img = document.createElement("img");
                 img.src = release.image || "/NNT/ApocalypticSubs/backend stuff/releasephotos/placeholder.png";
-                img.alt = `Episode ${release.episode} Image`;
+                img.alt = `${release.displaytext || "Release"} Image`;
                 releaseDiv.appendChild(img);
 
                 // Set the link based on the language
                 const langLink = isPortuguese ? release.br : release.en;
                 const langText = langLink
-                    ? `Download Episode S02E${release.episode} (${isPortuguese ? "PT-BR" : "EN"})`
+                    ? `Download ${release.displaytext || "Release"} (${isPortuguese ? "PT-BR" : "EN"})`
                     : (isPortuguese ? "Mei language oui oui or smthn" : "We are working on this release, please join our Discord for updates");
 
                 const downloadLink = document.createElement("a");
