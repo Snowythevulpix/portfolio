@@ -26,15 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 img.alt = `${release.displaytext || "Release"} Image`;
                 releaseDiv.appendChild(img);
 
-                // Set the link based on the language
+                // Set the text and link based on the language
+                const langText = isPortuguese ? release.displaytextbr : release.displaytexten;
                 const langLink = isPortuguese ? release.br : release.en;
-                const langText = langLink
-                    ? `Download ${release.displaytext || "Release"} (${isPortuguese ? "PT-BR" : "EN"})`
-                    : (isPortuguese ? "Estamos trabalhando duro para o lançamento, por favor, entre no nosso Discord para atualizações" : "We are working on this release, please join our Discord for updates");
 
                 const downloadLink = document.createElement("a");
                 downloadLink.href = langLink || "https://discord.gg/AsjunzY5"; // Redirect to Discord if link is missing
-                downloadLink.textContent = langText; // Keeps the appropriate text based on the link availability
+                downloadLink.textContent = langLink
+                    ? `${isPortuguese ? "Baixar" : "Download"} ${langText} (${isPortuguese ? "PT-BR" : "EN"})`
+                    : (isPortuguese
+                        ? "Estamos trabalhando duro para o lançamento, por favor, entre no nosso Discord para atualizações"
+                        : "We are working on this release, please join our Discord for updates");
+
                 releaseDiv.appendChild(downloadLink);
 
                 // Append each release to the container
