@@ -32,10 +32,10 @@
         "br": "https://discord.gg/AsjunzY5"
     },
     {
-        "id": "season1batch",
-        "displaytexten": "4kota season 1 batch",
-        "displaytextbr": "4kota temporada 1 completo",
-        "image": "../backend stuff/releasephotos/s1batch.png",
+        "id": "season2episode5",
+        "displaytexten": "4 knights of the apocalypse Season 2 Episode 5",
+        "displaytextbr": "Quatro Cavaleiros do Apocalipse - Temporada 2 Episódio 5",
+        "image": "../backend stuff/releasephotos/image5.png",
         "en": "",
         "br": ""
     }
