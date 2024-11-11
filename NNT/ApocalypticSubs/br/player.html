@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ApocalypticSubs - Video Player</title>
+    <title>Video Player</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -61,9 +61,10 @@
             }
         }
 
-        // Get the episode ID from the URL
+        // Get the episode ID and language from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const episodeId = urlParams.get('id');
+        const lang = urlParams.get('lang') || 'en'; // Default to 'en' if no lang parameter is provided
 
         // Variables for DOM elements
         const titleElement = document.getElementById('title');
@@ -76,25 +77,33 @@
             const release = releasesJson.find(r => r.id === episodeId);
 
             // Check if a valid release was found
-            if (release && release.directlink) {
-                titleElement.innerText = release.displaytexten;
+            if (release) {
+                titleElement.innerText = (lang === 'br') ? release.displaytextbr : release.displaytexten;
                 imageElement.src = release.image;
 
-                // Create the video player element
-                const videoPlayer = document.createElement('video');
-                videoPlayer.setAttribute('controls', 'true');
-                videoPlayer.setAttribute('src', release.directlink);
+                // Determine which directlink to use based on the lang parameter
+                const directLink = lang === 'br' ? release.directlinkbr : release.directlinken;
 
-                // Clear any loading message and add the video player
-                playerElement.innerHTML = '';
-                playerElement.appendChild(videoPlayer);
+                // If a valid directlink exists, create the video player
+                if (directLink) {
+                    const videoPlayer = document.createElement('video');
+                    videoPlayer.setAttribute('controls', 'true');
+                    videoPlayer.setAttribute('src', directLink);
+
+                    // Clear any loading message and add the video player
+                    playerElement.innerHTML = '';
+                    playerElement.appendChild(videoPlayer);
+                } else {
+                    // If no valid video link is found, show an error message
+                    errorMessageElement.style.display = 'block';
+                    playerElement.style.display = 'none';
+                }
             } else {
-                // If no valid video is found, show an error message
+                // If no matching episode is found, show an error message
                 errorMessageElement.style.display = 'block';
                 playerElement.style.display = 'none';
             }
         });
-
     </script>
 </body>
 
