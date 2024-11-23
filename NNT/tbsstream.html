@@ -36,8 +36,8 @@
         Your browser does not support the video tag.
     </video>
 
-    <!-- Correct HLS.js CDN -->
-    <script src="https://unpkg.com/hls.js@1.4.0/dist/hls.min.js"></script>
+    <!-- Updated HLS.js CDN to latest version -->
+    <script src="https://unpkg.com/hls.js@latest/dist/hls.min.js"></script>
     <script>
         const video = document.getElementById('video');
 
@@ -72,16 +72,18 @@
 
             // Handle errors
             hls.on(Hls.Events.ERROR, function (event, data) {
+                console.error('HLS.js Error:', event, data);
+
                 if (data.fatal) {
                     switch (data.fatal) {
                         case Hls.ErrorTypes.NETWORK_ERROR:
-                            console.error('Network error: Please check your internet connection');
+                            console.error('Network error: Unable to load stream.');
                             break;
                         case Hls.ErrorTypes.MEDIA_ERROR:
-                            console.error('Media error: Something went wrong with the video data');
+                            console.error('Media error: Something went wrong with the video data.');
                             break;
                         case Hls.ErrorTypes.OTHER_ERROR:
-                            console.error('Other error occurred', data);
+                            console.error('Other error:', data);
                             break;
                         default:
                             console.error('Unhandled error:', data);
