@@ -40,7 +40,9 @@
     <script src="https://unpkg.com/hls.js@1.4.0/dist/hls.min.js"></script>
     <script>
         const video = document.getElementById('video');
-        let videoSrc = 'http://vthanh.utako.moe/5/index.m3u8';
+
+        // Proxy URL (replace with your actual m3u8 source)
+        let videoSrc = 'https://nodejs-serverless-function-express-six-phi-85.vercel.app/api/proxy.js?url=' + encodeURIComponent('http://vthanh.utako.moe/5/index.m3u8');
 
         // Function to rewrite 'http' to 'https'
         function rewriteToHTTPS(url) {
