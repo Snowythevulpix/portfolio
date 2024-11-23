@@ -16,16 +16,91 @@
             background-color: #f0f0f0;
         }
 
-        iframe {
-            width: 800px;
-            height: 450px;
-            border: none;
+        video {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            background-color: black;
         }
     </style>
+
+    <link rel="icon" href="../psyducksprite.png" type="image/x-icon">
+    <meta property="og:title" content="ApocalypticSubs - TBS stream">
+    <meta property="og:description" content="Nines you're so cool omg (ikr)">
+    <meta property="og:image" content="../psyducksprite.png">
+    <meta property="og:type" content="website">
 </head>
 
 <body>
-    <iframe src="player.html" frameborder="0" allowfullscreen></iframe>
+    <video id="video" controls>
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Correct HLS.js CDN -->
+    <script src="https://unpkg.com/hls.js@1.4.0/dist/hls.min.js"></script>
+    <script>
+        const video = document.getElementById('video');
+        let videoSrc = 'http://vthanh.utako.moe/5/index.m3u8';
+
+        // Function to rewrite 'http' to 'https'
+        function rewriteToHTTPS(url) {
+            if (url.startsWith("http://")) {
+                return "https://" + url.substring(7); // Remove "http://" and add "https://"
+            }
+            return url;
+        }
+
+        // Rewrite the video source URL to HTTPS if necessary
+        videoSrc = rewriteToHTTPS(videoSrc);
+
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+
+            // Load the stream
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+
+            // Play the video when HLS is ready
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                console.log('Manifest parsed, starting video');
+                video.play().catch((error) => {
+                    console.error('Error playing video:', error);
+                });
+            });
+
+            // Handle errors
+            hls.on(Hls.Events.ERROR, function (event, data) {
+                if (data.fatal) {
+                    switch (data.fatal) {
+                        case Hls.ErrorTypes.NETWORK_ERROR:
+                            console.error('Network error: Please check your internet connection');
+                            break;
+                        case Hls.ErrorTypes.MEDIA_ERROR:
+                            console.error('Media error: Something went wrong with the video data');
+                            break;
+                        case Hls.ErrorTypes.OTHER_ERROR:
+                            console.error('Other error occurred', data);
+                            break;
+                        default:
+                            console.error('Unhandled error:', data);
+                            break;
+                    }
+                }
+            });
+
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // If Safari or another browser with native HLS support
+            video.src = videoSrc;
+            video.addEventListener('loadedmetadata', function () {
+                console.log('Native HLS stream ready');
+                video.play().catch((error) => {
+                    console.error('Error playing video:', error);
+                });
+            });
+        } else {
+            console.error('This browser does not support HLS streams');
+        }
+    </script>
 </body>
 
 </html>
