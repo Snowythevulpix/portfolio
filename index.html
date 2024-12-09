@@ -4,50 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninestails - Portfolio</title>
-    <link rel="icon" href="icon.png" type="image/png"> <!-- Favicon -->
-    <link rel="stylesheet" href="styles.css"> <!-- External CSS -->
+    <title>Website Redesign</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <!-- Psyduck Sprite -->
-    <img src="psyducksprite.png" alt="Psyduck Sprite" class="sprite">
-
-    <!-- Content Sections -->
-    <section id="intro">
-        <h1>Welcome to Ninestails' Portfolio</h1>
-        <p>Sup! My name is Ninestails/Nines. I'm a developer who mostly works in Python; however, I have experience in
-            web development as well.</p>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I’m enby and transfem, meaning I prefer feminine or neutral terms being used for me. Specifically,
-            the pronouns I use are Xe/They/She.
-        </p>
-    </section>
-
-    <section class="content" id="work">
-        <h1>My Projects.</h1>
-        <p>I have worked on many projects, these include</p>
-        <ul>
-            <li><a href="https://github.com/snowythevulpix/re-tanpopo" class="trans-link">tanpopo</a></li>
-            <li><a href="https://github.com/snowythevulpix/sonicdotpy" class="trans-link">sonicdotpy</a></li>
-            <li><a href="https://github.com/snowythevulpix/pagostunes" class="trans-link">pagostunes</a></li>
-        </ul>
-        <p>among other projects. Any projects that I have on my GitHub are projects I'm happy talking about.</p>
-    </section>
-
-
-
-    <section id="last-watched-anime">
-        <h2>Last watched anime</h2>
-        <div id="last-watched-anime-info">
-            <!-- The JavaScript will populate this section -->
+    <header>
+        <img src="images/logo.png" alt="Logo" class="logo">
+        <div class="right_box">
+            <h3>About me!</h3>
+            <p>My name is Ninestails, I'm a non-binary programmer and fansubber who uses the Prounouns Xe/Xem They/Them
+                or she/Her.</p>
         </div>
-    </section>
+    </header>
 
-    <script src="scripts.js"></script> <!-- External JavaScript -->
+
+    <main>
+
+        <div class="social_media_box">
+            <h3>Follow me!</h3>
+            <div class="social_icons">
+                <a href="https://bsky.app/profile/ninestails.xyz" target="_blank" aria-label="Bluesky">
+                    <img src="/images/bluesky.svg" alt="Bluesky Logo">
+                </a>
+                <a href="https://discord.com/users/770114469958647821" target="_blank" aria-label="Discord">
+                    <img src="/images/discord.svg" alt="Discord Logo">
+                </a>
+                <a href="https://www.tiktok.com/@nyarotes" target="_blank" aria-label="TikTok">
+                    <img src="/images/tiktok.svg" alt="TikTok Logo">
+                </a>
+                <a href="https://www.youtube.com/@Ninesstails" target="_blank" aria-label="YouTube">
+                    <img src="/images/youtube.svg" alt="YouTube Logo">
+                </a>
+                </a>
+                <a href="https://anilist.co/user/LikosTerapagos/" target="_blank" aria-label="Anilist">
+                    <img src="/images/anilist.svg" alt="Anilist Logo">
+                </a>
+                </a>
+                <a target="_blank" aria-label="Psyduck">
+                    <img src="/images/Psyduck.svg" alt="Psyduck">
+                </a>
+            </div>
+        </div>
+
+        <div class="last_watched_anime">
+            <h2>Last Watched Anime</h2>
+            <div id="last-watched-anime-info">
+                <!-- This is where the last watched anime info will be populated -->
+                <p>Loading last watched anime...</p>
+            </div>
+        </div>
+        <div class="fav_pokemon_box">
+            <h2>Favorite Pokémon</h2>
+            <div class="pokemon_images">
+                <img src="/images/psyducksprite.png" alt="Psyduck Sprite">
+                <img src="/images/nyarote.png" alt="Nyarote">
+                <img src="/images/Terapagos.png" alt="Terapagos">
+                <img src="/images/vulpix.png" alt="vulpix">
+                <img src="/images/mijumaru.png" alt="mijumaru">
+                <img src="/images/lycanroc.png" alt="lycanroc">
+
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="scripts.js"></script>
 </body>
 
 </html>

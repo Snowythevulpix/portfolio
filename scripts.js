@@ -67,17 +67,6 @@ async function fetchLastWatchedAnime(userName, status) {
   }
 }
 
-// Function to apply the trans-colored effect to a string
-function applyTransColoredEffect(text) {
-  return text.split('').map((letter, index) => {
-    const span = document.createElement('span');
-    span.textContent = letter;
-    const colors = ['#55CDFC', '#F7A8B8', '#FFFFFF', '#F7A8B8', '#55CDFC'];
-    span.style.color = colors[index % colors.length];
-    return span.outerHTML;
-  }).join('');
-}
-
 // Function to update the HTML with the last watched anime title, timestamp, and episode
 function updateLastWatchedAnimeInfo(title, timestamp, status, progress) {
   const animeInfoDiv = document.getElementById('last-watched-anime-info');
@@ -96,21 +85,19 @@ function updateLastWatchedAnimeInfo(title, timestamp, status, progress) {
       hour12: false
     });
 
-    const titleTransColored = applyTransColoredEffect(title);
     const label = status === "COMPLETED" ? 'Completed on:' : 'Watched on:';
-    const labelTransColored = applyTransColoredEffect(label);
-    const dateTimeTransColored = applyTransColoredEffect(`${formattedDate} ${formattedTime}`);
+    const dateTime = `${formattedDate} ${formattedTime}`;
 
     let progressInfo = '';
     if (status !== "COMPLETED" && progress) {
-      const progressLabel = applyTransColoredEffect('Last watched episode:');
-      const progressValue = applyTransColoredEffect(`Episode ${progress}`);
+      const progressLabel = 'Last watched episode:';
+      const progressValue = `Episode ${progress}`;
       progressInfo = `<p>${progressLabel} ${progressValue}</p>`;
     }
 
     animeInfoDiv.innerHTML = `
-          <p>${applyTransColoredEffect('Title:')} ${titleTransColored}</p>
-          <p>${labelTransColored} ${dateTimeTransColored}</p>
+          <p>Title: ${title}</p>
+          <p>${label} ${dateTime}</p>
           ${progressInfo}
       `;
   }
@@ -150,42 +137,3 @@ Promise.all([
   .catch(error => {
     console.error("Error fetching last watched anime:", error);
   });
-
-// Function to apply the trans-colored effect to all text elements
-function applyTransColoredEffectToAll() {
-  document.querySelectorAll('h1, h2, h3, h4, h5, h6, p').forEach(element => {
-    const text = element.textContent;
-    element.innerHTML = ''; // Clear the current text
-
-    // Split text into spans and append to the element
-    text.split('').forEach(letter => {
-      const span = document.createElement('span');
-      span.textContent = letter;
-      element.appendChild(span);
-    });
-
-    element.classList.add('trans-colored');
-  });
-}
-
-// Initial application of trans-colored effect to all text elements
-applyTransColoredEffectToAll();
-
-// Function to apply the trans-colored effect to list items
-function applyTransColoredEffectToList() {
-  // Select all list items within the trans-colored class
-  document.querySelectorAll('ul.trans-colored li').forEach(li => {
-    const text = li.textContent;
-    li.innerHTML = ''; // Clear the current text
-
-    // Wrap each letter in a span
-    text.split('').forEach((letter, index) => {
-      const span = document.createElement('span');
-      span.textContent = letter;
-      li.appendChild(span);
-    });
-  });
-}
-
-// Call the function to apply the effect to list items
-applyTransColoredEffectToList();
