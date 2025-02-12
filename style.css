@@ -1,0 +1,257 @@
+/* Reset some default browser styles */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* Ensure the body takes up the full height */
+}
+
+/* Rainbow Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom left,
+            red, orange, yellow, green, blue, indigo, violet);
+    z-index: -1;
+    /* Place behind other content */
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Ensure the container takes up at least the full viewport height */
+}
+
+.central-box {
+    width: 600px;
+    /* Increased width */
+    /* height: 300px;  Remove fixed height */
+    background-color: white;
+    border: 1px solid #333;
+    /* MODIFY THIS LINE (Desktop Border) */
+    display: flex;
+    /* Use flexbox for horizontal layout */
+    flex-direction: row;
+    /* Stack items horizontally (left to right) */
+    /* grid-template-columns: repeat(1, 1fr);  Remove grid properties */
+    /* grid-template-rows: repeat(4, 1fr);  Remove grid properties */
+    gap: 10px;
+    /* Increased gap */
+    padding: 10px;
+    /* Increased padding */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width and height */
+    position: relative;
+    /* Needed for absolute positioning of content boxes */
+    /* justify-content: space-between; */
+    transition: border-bottom 0.3s ease;
+}
+
+.central-box.active {
+    border-bottom: none;
+}
+
+.inner-box {
+    border: 1px solid #333;
+    /* MODIFY THIS LINE (Desktop Border) */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    /* display: flex;  Remove flex display */
+    /* justify-content: center;  Remove justify-content */
+    /* align-items: center;  Remove align-items */
+    font-size: 1.2em;
+    /* Make the text a bit bigger */
+    text-align: center;
+    padding: 10px;
+    /* Add padding to the inner boxes */
+    /* height: 70px;  Remove fixed height */
+    width: 120px;
+    /* Increased width */
+    height: 100px;
+}
+
+.inner-box:hover {
+    transform: scale(1.05);
+}
+
+.inner-box.active {
+    /* Styles for when the box is clicked (e.g., different border) */
+    border-color: blue;
+}
+
+.content-box {
+    position: absolute;
+    /* Changed to absolute */
+    /* top: calc(100% + 10px);  Remove this line */
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    /* Center horizontally and move up */
+    width: 600px;
+    /* Match the central box width */
+    /* height: 300px;  Remove fixed height */
+    background-color: white;
+    border: 1px solid #333;
+    /* MODIFY THIS LINE (Desktop Border) */
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 10;
+    display: none;
+    /* Hidden by default */
+    overflow-y: auto;
+    /* Add scrollbars if content overflows */
+    opacity: 0;
+    /* Initially hidden */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-top: none;
+    /* Remove the top border */
+}
+
+.content-box.active {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Style the images within the content box */
+.content-box img {
+    max-width: 100%;
+    /* Make images responsive */
+    max-height: 200px;
+    /* Set a maximum height */
+    width: auto;
+    /* Allow width to adjust automatically */
+    height: auto;
+    /* Allow height to adjust automatically */
+    object-fit: contain;
+    /* Maintain aspect ratio, fit within the box */
+    margin-bottom: 10px;
+    /* Add some spacing below the images */
+}
+
+/* Style the social media icons */
+.content-box .social_icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.content-box .social_icons img {
+    width: 32px;
+    /* Adjust the size as needed */
+    height: 32px;
+    /* Adjust the size as needed */
+    margin: 5px;
+    /* Add spacing between icons */
+}
+
+/* Style the pokemon images */
+.content-box .fav_pokemon_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.content-box .pokemon_images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    /* Increased gap between pokemon images */
+}
+
+.content-box .pokemon_images img {
+    width: 64px;
+    /* Adjust the size as needed */
+    height: 64px;
+    /* Adjust the size as needed */
+    /* margin: 5px;  Remove margin */
+}
+
+/* Center the "Follow me!" text */
+.content-box .social_media_box h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    /* Add some space below the heading */
+}
+
+/* Center the text in the About Me box */
+.about-me-box {
+    text-align: center;
+}
+
+/* Define the Humming font */
+@font-face {
+    font-family: 'Humming';
+    /* Choose a name for your font */
+    src: url('fonts/Humming.ttf') format('truetype');
+    /* Use the .ttf file */
+    font-weight: normal;
+    /* Or specify a weight if the font has different weights */
+    font-style: normal;
+    /* Or specify a style if the font has different styles */
+}
+
+/* Apply the font to the entire body */
+body {
+    font-family: 'Humming', sans-serif;
+    /* Fallback font */
+}
+
+/* Apply the font to the About Me box */
+.about-me-box {
+    font-family: 'Humming', sans-serif;
+}
+
+/* Media query for smaller screens (e.g., phones) */
+@media (max-width: 768px) {
+
+    /* Make the central box take up more width */
+    .central-box {
+        width: 90%;
+        /* Or 100% */
+        flex-direction: column;
+        /* Stack boxes vertically */
+        gap: 10px;
+        /* Adjust gap */
+        border: 0.5px solid #333;
+        /* MODIFY THIS LINE (Mobile Border) */
+    }
+
+    /* Make the inner boxes take up full width */
+    .inner-box {
+        width: 100%;
+        height: auto;
+        /* Allow height to adjust */
+        font-size: 1em;
+        /* Adjust font size */
+        border: 0.5px solid #333;
+        /* MODIFY THIS LINE (Mobile Border) */
+    }
+
+    /* Adjust the content box width */
+    .content-box {
+        width: 90%;
+        /* Or 100% */
+        border: 0.5px solid #333;
+        /* MODIFY THIS LINE (Mobile Border) */
+    }
+
+    /* Adjust the social media icons */
+    .content-box .social_icons img {
+        width: 48px;
+        /* Make icons bigger for touch */
+        height: 48px;
+    }
+
+    /* Adjust the pokemon images */
+    .content-box .pokemon_images img {
+        width: 96px;
+        /* Make images bigger for touch */
+        height: 96px;
+    }
+}

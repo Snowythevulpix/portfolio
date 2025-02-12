@@ -4,75 +4,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ninestails' Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Ninestails' Very Epic Website</title>
+
+    <!-- Discord Link Preview Meta Tags -->
+    <meta property="og:title" content="Ninestails' Very Epic Website">
+    <meta property="og:description" content="About Ninestails (not that xe is particularly interesting)">
+    <meta property="og:image" content="/images/Psyduck.svg">
+    <meta property="og:url" content="https://ninestails.xyz">
+    <meta property="og:type" content="website">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/images/Psyduck.svg" type="image/png">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header>
-        <img src="images/logo.png" alt="Logo" class="logo">
-        <div class="right_box">
-            <h3>About me!</h3>
-            <p>My name is Ninestails, I'm a non-binary programmer and fansubber who uses the Prounouns Xe/Xem They/Them
-                or she/Her.</p>
-        </div>
-    </header>
-
-
-    <main>
-
-        <div class="social_media_box">
-            <h3>Follow me!</h3>
-            <div class="social_icons">
-                <a href="https://bsky.app/profile/ninestails.xyz" target="_blank" aria-label="Bluesky">
-                    <img src="/images/bluesky.svg" alt="Bluesky Logo">
-                </a>
-                <a href="https://discord.com/users/770114469958647821" target="_blank" aria-label="Discord">
-                    <img src="/images/discord.svg" alt="Discord Logo">
-                </a>
-                <a href="https://www.tiktok.com/@nyarotes" target="_blank" aria-label="TikTok">
-                    <img src="/images/tiktok.svg" alt="TikTok Logo">
-                </a>
-                <a href="https://www.youtube.com/@Ninesstails" target="_blank" aria-label="YouTube">
-                    <img src="/images/youtube.svg" alt="YouTube Logo">
-                </a>
-                </a>
-                <a href="https://anilist.co/user/LikosTerapagos/" target="_blank" aria-label="Anilist">
-                    <img src="/images/anilist.svg" alt="Anilist Logo">
-                </a>
-                </a>
-                <a target="_blank" aria-label="Psyduck">
-                    <img src="/images/Psyduck.svg" alt="Psyduck">
-                </a>
-            </div>
-        </div>
-
-        <div class="last_watched_anime">
-            <h2>Last Watched Anime</h2>
-            <div id="last-watched-anime-info">
-                <!-- This is where the last watched anime info will be populated -->
-                <p>Loading last watched anime...</p>
-            </div>
-        </div>
-        <div class="fav_pokemon_box">
-            <h2>Favorite Pokémon</h2>
-            <div class="pokemon_images">
-                <img src="/images/psyducksprite.png" alt="Psyduck Sprite">
-                <img src="/images/nyarote.png" alt="Nyarote">
-                <img src="/images/terapagos.png" alt="Terapagos">
-                <img src="/images/vulpix.png" alt="vulpix">
-                <img src="/images/mijumaru.png" alt="mijumaru">
-                <img src="/images/lycanroc.png" alt="lycanroc">
-
-            </div>
+    <div class="container">
+        <div class="central-box">
+            <!-- Inner Boxes -->
+            <div class="inner-box" data-content="
+          <div class='social_media_box'>
+              <h3>Follow me!</h3>
+              <div class='social_icons'>
+                  <a href='https://bsky.app/profile/ninestails.xyz' target='_blank' aria-label='Bluesky'>
+                      <img src='/images/bluesky.svg' alt='Bluesky Logo'>
+                  </a>
+                  <a href='https://discord.com/users/770114469958647821' target='_blank' aria-label='Discord'>
+                      <img src='/images/discord.svg' alt='Discord Logo'>
+                  </a>
+                  <a href='https://www.tiktok.com/@nyarotes' target='_blank' aria-label='TikTok'>
+                      <img src='/images/tiktok.svg' alt='TikTok Logo'>
+                  </a>
+                  <a href='https://www.youtube.com/@Ninesstails' target='_blank' aria-label='YouTube'>
+                      <img src='/images/youtube.svg' alt='YouTube Logo'>
+                  </a>
+                  <a href='https://anilist.co/user/LikosTerapagos/' target='_blank' aria-label='Anilist'>
+                      <img src='/images/anilist.svg' alt='Anilist Logo'>
+                  </a>
+                  <a href='https://instagram.com/Nyarotes/' target='_blank' aria-label='Anilist'>
+                    <img src='/images/psyduck.svg' alt='Anilist Logo'>
+                  </a>
+              </div>
+          </div>
+      ">Social Media</div>
+            <div class="inner-box" data-content="
+          <div class='last_watched_anime'>
+              <h2>Last Watched Anime</h2>
+              <div id='last-watched-anime-info'>
+                  <p>Loading last watched anime...</p>
+              </div>
+          </div>
+      ">Last Watched Anime</div>
+            <div class="inner-box" data-content="
+          <div class='fav_pokemon_box'>
+              <h2>Favorite Pokémon</h2>
+              <div class='pokemon_images'>
+                  <img src='/images/psyducksprite.png' alt='Psyduck Sprite'>
+                  <img src='/images/nyarote.png' alt='Nyarote'>
+                  <img src='/images/terapagos.png' alt='Terapagos'>
+                  <img src='/images/vulpix.png' alt='vulpix'>
+                  <img src='/images/mijumaru.png' alt='mijumaru'>
+                  <img src='/images/lycanroc.png' alt='lycanroc'>
+              </div>
+          </div>
+      ">Favorite Pokémon</div>
+            <div class="inner-box about-me-box"
+                data-content="I go by the name Ninestails, i'm also known as Kaz or Shobu.<br>I use the pronouns Xe/They/She. <br>I'm enby transfem & I love Psyduck.<br>I don't tend to add people unless we've spoken before. <br> I run <a href='https://apocalypticsubs.xyz' target='_blank'>apocalypticsubs.xyz</a>">
+                About Me</div>
         </div>
 
-
-
-    </main>
-
-    <!-- Link to the external JavaScript file -->
-    <script src="scripts.js"></script>
+        <script src=" script.js">
+        </script>
+        <script src="lastwatchedanime.js"></script>
 </body>
 
 </html>
