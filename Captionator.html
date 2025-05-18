@@ -96,7 +96,8 @@
   <h1>🖼️ Captionator: Add a Caption to Your Image</h1>
   <input type="file" accept="image/*" id="imageInput" />
   <br />
-  <input type="text" id="captionInput" placeholder="Enter your caption here..." />
+  <input type="text" id="captionInput" placeholder="Enter your caption here..." maxlength="100" />
+  <small>(Max 100 characters)</small>
   <br />
   <button onclick="generate()">Add Caption</button>
   <br />
@@ -136,12 +137,18 @@
           // Draw the original image
           ctx.drawImage(image, 0, whiteBoxHeight);
 
-          // Set font
-          const fontSize = whiteBoxHeight * 0.5;
+          // Adaptive font size to fit width
+          let fontSize = whiteBoxHeight * 0.5;
+          const padding = 20;
           ctx.font = `${fontSize}px sans-serif`;
+          // Reduce font size until text fits or minimum font size
+          while (ctx.measureText(caption).width > canvas.width - padding && fontSize > 10) {
+            fontSize -= 2;
+            ctx.font = `${fontSize}px sans-serif`;
+          }
           ctx.fillStyle = 'black';
 
-          // Measure text and center it
+          // Center text horizontally and vertically
           const textMetrics = ctx.measureText(caption);
           const textX = (canvas.width - textMetrics.width) / 2;
           const textY = whiteBoxHeight * 0.65;
