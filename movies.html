@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="A site listing watched and unwatched Pokémon movies" />
+<meta name="author" content="Your Name Here" />
+
+<title>Pokémon Movie Tracker</title>
+
+<!-- Open Graph Metadata -->
+<meta property="og:title" content="Ninestails' Very Epic Website" />
+<meta property="og:description" content="Ninestails' pokemon movies tracker" />
+<meta property="og:image" content="/images/Psyduck.svg" />
+<meta property="og:url" content="https://ninestails.xyz" />
+<meta property="og:type" content="website" />
+
+<style>
+    /* Rainbow Background */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: linear-gradient(to bottom left,
+            red, orange, yellow, green, blue, indigo, violet);
+        z-index: -1;
+    }
+
+    body {
+        font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
+        color: white;
+        text-shadow:
+            -1px -1px 0 #000,
+             1px -1px 0 #000,
+            -1px  1px 0 #000,
+             1px  1px 0 #000;
+        margin: 0; padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    section {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        background: rgba(0,0,0,0.3);
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    section h2 {
+        margin-top: 0;
+        border-bottom: 2px solid white;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .movie {
+        margin-bottom: 25px;
+        border-bottom: 1px solid white;
+        padding-bottom: 15px;
+    }
+
+    .movie:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .movie label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .static-text {
+        background: rgba(255 255 255 / 0.1);
+        border: 1px solid white;
+        border-radius: 5px;
+        padding: 8px;
+        margin-bottom: 10px;
+        user-select: text;
+        font-family: inherit;
+        color: white;
+        min-height: 1.5em;
+        white-space: nowrap;
+    }
+
+    .static-text.notes {
+        min-height: 3em;
+        white-space: normal;
+    }
+    .movie-img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    display: block;
+}
+
+</style>
+</head>
+<body>
+<h1>Pokémon Movie Tracker</h1>
+<section>
+<h2>Watched Pokémon Movies</h2>
+
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">Mewtwo Strikes Back!</div>
+
+        <label>Number:</label>
+        <div class="static-text">M01</div>
+
+        <label>Group:</label>
+        <div class="static-text">Some-Stuffs</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">Not really much I remember about this.</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">Sky-Splitting Visitor - Deoxys</div>
+
+        <label>Number:</label>
+        <div class="static-text">M07</div>
+
+        <label>Group:</label>
+        <div class="static-text">Sossubs</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">I made some custom changes to the sossubs script to make it closer to the Some-Stuffs styling and terms. Overall it was a solid movie. The reason I watched it was so that i could find a scene i remember when I was younger, however I did not find said scene and am still on the hunt.</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">Mew and the wave hero Lucario</div>
+
+        <label>Number:</label>
+        <div class="static-text">M08</div>
+
+        <label>Group:</label>
+        <div class="static-text">Sossubs -> PM</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">Initally i watched it with PM's subs, then when Sossubs did their release I tried watching it however their choices for translation bugged me that half way through i swapped to PM's release again.</div>
+    </div>
+
+        <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">Dialga VS Palkia VS Darkrai</div>
+
+        <label>Number:</label>
+        <div class="static-text">M10</div>
+
+        <label>Group:</label>
+        <div class="static-text">P-O</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">One of the Few releases that i've watched of pokemon that isn't S-S PM or sossubs. This sub is the infamous "Palkia you son of a bitch" sub. I watched this release over PM's for that reason pretty much alone. Was harder to find but i found it none the less. Was it worth watching for a point "omg he said the thing" moment? absolutely. Note from past me: They straight up forgot to sub Hikari saying hai lmao. (Hai means yes/in agreeance. In this context she was agreeing with what Satoshi said)</div>
+    </div>
+        <label>Image:</label>
+    <div class="static-text notes">
+        <img src="images/movies/M10.png" alt="Image for movie" class="movie-img" />
+    </div>
+</div>
+
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">Kyurem vs The Sacred swordman Keldeo</div>
+
+        <label>Number:</label>
+        <div class="static-text">M15</div>
+
+        <label>Group:</label>
+        <div class="static-text">PM</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">I actually watched this movie because i saw the dub had the extended version of my fav dub opening, despite that i watched this in japanese due to prefrence</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">I choose you!</div>
+
+        <label>Number:</label>
+        <div class="static-text">M20</div>
+
+        <label>Group:</label>
+        <div class="static-text">Sossubs -> PM</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">Basiclly the same story as M08. Was my fav movie for a while, M08 changed that however.</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">Our Story</div>
+
+        <label>Number:</label>
+        <div class="static-text">M21</div>
+
+        <label>Group:</label>
+        <div class="static-text">Some-Stuffs</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">Solid Movie. Not much else to it</div>
+    </div>
+    
+        <label>Image:</label>
+    <div class="static-text notes">
+        <img src="images/movies/M21.png" alt="Image for movie" class="movie-img" />
+    </div>
+</div>
+
+    
+ <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">Koko</div>
+
+        <label>Number:</label>
+        <div class="static-text">M23</div>
+
+        <label>Group:</label>
+        <div class="static-text">Some-Stuffs</div>
+
+        <label>Notes:</label>
+        <div class="static-text notes">Gotta say, I loved this movie. Koko is such a great character. Might be my fav out of any pokemon movie, other then maybe M08</div>
+    </div>
+    </section>
+<section>
+
+<!--  <h2>Unwatched Pokémon Movies</h2>
+
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M02</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M03</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M04</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M05</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M06</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M09</div>
+    </div>
+  
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M11</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M12</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M13</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M14</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M16</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M17</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M18</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M19</div>
+    </div>
+    
+    <div class="movie">
+        <label>Name:</label>
+        <div class="static-text">[Movie Name Here]</div>
+
+        <label>Number:</label>
+        <div class="static-text">M22</div>
+    </div>
+    </section>
+-->
+
+<p style="
+    max-width: 600px;
+    margin: 0 auto 20px;
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+">
+    The translations used for the titles are the group I watched's translation unless there's a translation choice I prefer.
+    <!-- The ones that I haven't watched are just Bulbapedia's translation. --></p>
+<script>
+  document.querySelectorAll('.movie').forEach(movie => {
+    // Find the Name div inside this movie block
+    const nameDiv = movie.querySelector('label + .static-text');
+    if (nameDiv && !nameDiv.dataset.prefixed) {
+      nameDiv.textContent = 'Pocket Monsters The Movie: ' + nameDiv.textContent;
+      nameDiv.dataset.prefixed = 'true';  // prevent double prefix if script runs twice
+    }
+  });
+</script>
+
+</body>
+</html>
